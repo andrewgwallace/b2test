@@ -1,3 +1,7 @@
+# B2Test
+
+This application is a simple dummy app that lists the four 2MB dummy files in a test bucket on backblaze. 
+
 ## Installation
 
 Run 
