@@ -25,25 +25,22 @@ const b2 = new b2CloudStorage({
 const urlPath = 'files/'
 
 // PROMISIFIED
+const authorize = util.promisify(b2.authorize)
 const listFileNames = util.promisify(b2.listFileNames)
 
 const listB2Files = async (urlPath) => {
 	try {
-		'use strict';
-			b2.authorize(function(err){
-				if(err){ throw err;}
-				listFileNames({
-						bucketId: '042038a226114fbf7d520a12',
-						prefix: urlPath,
-						delimiter: "/",
-				})
-			.then(res => console.log(res))
-			.catch(err => console.log(err))
-		})} 
-		catch (err) {
-			console.log(err)
-		}
+		"use strict";
+		await b2.authorize()
+		return await listFileNames({
+			bucketId: '042038a226114fbf7d520a12',
+			prefix: urlPath,
+			delimiter: "/",
+		})
+	}  catch (err) {
+		console.log(err)
 	}
+}
 
 listB2Files(urlPath)
 
