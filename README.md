@@ -1,3 +1,11 @@
-1. Run 
+##Installation
+
+Run 
 `npm install`
-2. run `node listb2files.js`
+
+##Program Execution
+Run `node listb2files.js`
+
+
+##Libraries
+[b2-cloud-storage](https://github.com/nodecraft/b2-cloud-storage/blob/HEAD/docs.md)
