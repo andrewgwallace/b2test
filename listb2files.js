@@ -25,47 +25,25 @@ const b2 = new b2CloudStorage({
 const urlPath = 'files/'
 
 // PROMISIFIED
-// const listFileNames = util.promisify(b2.listFileNames)
+const listFileNames = util.promisify(b2.listFileNames)
 
-// const listB2Files = async (urlPath) => {
-// 	try {
-// 		'use strict';
-// 			b2.authorize(function(err){
-// 				if(err){ throw err;}
-// 				listFileNames({
-// 						bucketId: '042038a226114fbf7d520a12',
-// 						prefix: urlPath,
-// 						delimiter: "/",
-// 				})
-// 			.then(res => console.log(res))
-// 			.catch(err => console.log(err))
-// 		})} 
-// 		catch (err) {
-// 			console.log(err)
-// 		}
-// 	}
-
-
-// THIS RETURNS THE B2 RESPONSE, NOT THE ACTUAL LIST
-const listB2Files = (urlPath) => {
-  try {
-  'use strict';
-    b2.authorize(function(err){
-      if(err){ throw err; }
-			const data = b2.listFileNames({
-          bucketId: '042038a226114fbf7d520a12',
-          prefix: urlPath,
-          delimiter: "/",
-      }, (err, response) => {
-				// console.log(response)
-				return response
-			})
-			console.log(data)
-		})
-  } catch (err) {
-    console.log(err)
-  }
-}
+const listB2Files = async (urlPath) => {
+	try {
+		'use strict';
+			b2.authorize(function(err){
+				if(err){ throw err;}
+				listFileNames({
+						bucketId: '042038a226114fbf7d520a12',
+						prefix: urlPath,
+						delimiter: "/",
+				})
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
+		})} 
+		catch (err) {
+			console.log(err)
+		}
+	}
 
 listB2Files(urlPath)
 
