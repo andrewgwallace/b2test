@@ -24,28 +24,24 @@ const b2 = new b2CloudStorage({
 
 const urlPath = 'files/'
 
-listB2Files = (urlPath) => {
-	try {
-		// Authorize first
-		b2.authorize(err => {
-		if(err){ throw err; }
-		return new Promise((resolve, reject) => {
-				b2.listFileNames({
-				bucketId: '042038a226114fbf7d520a12',
-				prefix: urlPath,
-				delimiter: "/", // Break up results by '/'.
-				}, (err, data) => {
-				if (err) { throw err }
-				console.log(data) // Shows up in console.
-				resolve(data) // Nothing returned
-				}) 
-		})
-		// .then(res => res) commented out: same above can be done here; only shown in console when logged. 
-		})
-	} catch (err) {
-		console.log(err)
-	}
-};
+const listB2Files = (urlPath) => {
+  try {
+  'use strict';
+    b2.authorize(async function(err){
+      if(err){ throw err; }
+      return await b2.listFileNames({
+          bucketId: '042038a226114fbf7d520a12',
+          prefix: urlPath,
+          delimiter: "/",
+      }, (err, response) => {
+        // console.log(response);
+        return response
+      })
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 listB2Files(urlPath)
 
